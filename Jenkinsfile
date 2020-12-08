@@ -25,7 +25,7 @@ pipeline {
   stage('Deploy to K8s') {
     steps {
       withKubeConfig([credentialsId: 'kubeconfig-credential2']) {
-        sh 'helm upgrade -i edutest-app . -f values.yaml --set image.tag=Â$GIT_COMMIT'
+        sh 'helm upgrade -i edutest-app helm -f helm/values.yaml --set image.tag=$GIT_COMMIT'
       }
     }
     }
