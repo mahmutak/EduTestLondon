@@ -14,7 +14,8 @@ pipeline {
     stage('Build And Push Container Image') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            sh "docker build -t docker.io/mahmut25/edutest-app:$GIT_COMMIT ."
+            sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+	    sh "docker build -t docker.io/mahmut25/edutest-app:$GIT_COMMIT ."
             sh "docker push docker.io/mahmut25/edutest-app:$GIT_COMMIT"
 
         }
