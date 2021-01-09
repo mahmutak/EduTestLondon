@@ -5,6 +5,7 @@ pipeline {
 
     stage('Build App') {
       steps {
+            echo "Building with yarn"
             sh "yarn"
             sh "yarn build"
       }
